@@ -1,22 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Text, IconButton, Flex } from '@chakra-ui/react';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
+import { deleteUser } from '../utils/api';
+import UserModal from './UserModal';
 
 const UserListItem = ({ user }) => {
 
-  const handleDelete = async () => {
-    try {
-      const response = await fetch(`https://jsonplaceholder.typicode.com/users/${user.id}`, {
-        method: 'DELETE',
-      });
-    } catch (error) {
-      console.error('Error deleting user:', error.message);
+    const [isEditing, setIsEditing] = useState(false);
+
+    const handleDelete = async () => {
+        try {
+        const response = await deleteUser(user.id)
+        } catch (error) {
+        console.error('Error deleting user:', error.message);
+        }
+    };
+
+    const handleEdit = () =>{
+        setIsEditing(true);
     }
-  };
-
-  const handleEdit = () =>{
-
-  }
 
   return (
     <Box p={4} borderRadius="md" boxShadow="md" _hover={{ shadow: 'lg', cursor: 'pointer', bg: 'gray.200' }}>
@@ -40,6 +42,7 @@ const UserListItem = ({ user }) => {
           />
         </Flex>
       </Flex>
+      {isEditing && <UserModal user={user} onClose={() => setIsEditing(false)} />}
     </Box>
   );
 };

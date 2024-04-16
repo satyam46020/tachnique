@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Spinner, Text, Grid, useToast } from '@chakra-ui/react';
 import UserListItem from './UserListItem';
+import { getUsers } from '../utils/api';
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
@@ -8,30 +9,25 @@ const UserList = () => {
   const [error, setError] = useState(null);
   const toast = useToast();
 
+  const fetchUsers = async () => {
+    try {
+      const data = await getUsers();
+      setUsers(data);
+      setLoading(false);
+    } catch (error) {
+      setError(error.message);
+      setLoading(false);
+      toast({
+        title: 'Error',
+        description: 'Failed to fetch data from server',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  };
+  
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const res = await fetch(`https://jsonplaceholder.typicode.com/users`);
-        if (!res.ok) {
-          throw new Error('Error fetching data from server');
-        }
-        const data = await res.json();
-        setUsers(data);
-        setLoading(false);
-      } catch (error) {
-        setError(error.message);
-        setLoading(false);
-        // Show toast notification
-        toast({
-          title: 'Error',
-          description: 'Failed to fetch data from server',
-          status: 'error',
-          duration: 5000,
-          isClosable: true,
-        });
-      }
-    };
-
     fetchUsers();
   }, [toast]);
 
