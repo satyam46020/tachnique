@@ -1,34 +1,40 @@
 import React, { useState } from 'react';
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Input, Button } from '@chakra-ui/react';
-import { editUser } from '../utils/api';
+import { addUser, editUser } from '../utils/api';
 
-const UserModal = ({ user, onClose }) => {
-  const [editedName, setEditedName] = useState(user.name);
-  const [editedEmail, setEditedEmail] = useState(user.email);
-  const [editedWebsite, setEditedWebsite] = useState(user.website);
+const UserModal = ({ isOpen, onClose, onSubmit, user }) => {
+  const [name, setName] = useState(user ? user.name : '');
+  const [email, setEmail] = useState(user ? user.email : '');
+  const [website, setWebsite] = useState(user ? user.website : '');
 
-  const handleSaveEdit = async () => {
-    try {
-      const response = await editUser();
-        onClose();
-    } catch (error) {
-      console.error('Error editing user:', error.message);
+  const handleSubmit = async () => {
+    const userData = {
+      name,
+      email,
+      website,
+    };
+    if (user) {
+      await editUser(user.id, userData);
+    } else {
+      await addUser(userData);
     }
+    onSubmit();
+    onClose();
   };
 
   return (
-    <Modal isOpen={true} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Edit User</ModalHeader>
+        <ModalHeader>{user ? 'Edit User' : 'Add User'}</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <Input value={editedName} onChange={(e) => setEditedName(e.target.value)} placeholder="Name" mb={2} />
-          <Input value={editedEmail} onChange={(e) => setEditedEmail(e.target.value)} placeholder="Email" mb={2} />
-          <Input value={editedWebsite} onChange={(e) => setEditedWebsite(e.target.value)} placeholder="Website" mb={2} />
+          <Input value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" mb={2} />
+          <Input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" mb={2} />
+          <Input value={website} onChange={(e) => setWebsite(e.target.value)} placeholder="Website" mb={2} />
         </ModalBody>
         <ModalFooter>
-          <Button colorScheme="blue" mr={3} onClick={handleSaveEdit}>
+          <Button colorScheme="blue" mr={3} onClick={handleSubmit}>
             Save
           </Button>
           <Button onClick={onClose}>Cancel</Button>

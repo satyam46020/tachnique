@@ -19,7 +19,8 @@ export const addUser = async (userData) => {
   if (!response.ok) {
     throw new Error('Failed to add user');
   }
-  return response.json();
+  console.log(await response.json())
+  return response;
 };
 
 export const editUser = async (userId, userData) => {
@@ -42,4 +43,5 @@ export const deleteUser = async (userId) => {
   if (!response.ok) {
     throw new Error('Failed to delete user');
   }
+  console.log( await response.json())
 };
