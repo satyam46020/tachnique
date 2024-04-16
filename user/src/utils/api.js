@@ -1,7 +1,7 @@
 const BASE_URL = 'https://jsonplaceholder.typicode.com';
 
-export const getUsers = async () => {
-  const response = await fetch(`${BASE_URL}/users`);
+export const getUsers = async (page, limit) => {
+  const response = await fetch(`${BASE_URL}/users?_page=${page}&_limit=${limit}`);
   if (!response.ok) {
     throw new Error('Failed to fetch users');
   }
@@ -34,14 +34,16 @@ export const editUser = async (userId, userData) => {
     if (!response.ok) {
       throw new Error('Failed to edit user');
     }
+    console.log(await response.json())
 };
 
 export const deleteUser = async (userId) => {
-  const response = await fetch(`${BASE_URL}/users/${userId}`, {
-    method: 'DELETE',
-  });
-  if (!response.ok) {
-    throw new Error('Failed to delete user');
-  }
-  console.log( await response.json())
+    const response = await fetch(`${BASE_URL}/users/${userId}`, {
+        method: 'DELETE',
+    });
+    if (!response.ok) {
+        throw new Error('Failed to delete user');
+    }
+    console.log( await response.json())
+    // console.log(await response.json())
 };

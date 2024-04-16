@@ -1,34 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import { Spinner, Text, Grid, useToast, Button } from '@chakra-ui/react';
+import { Spinner, Text, Grid, useToast, Button, Flex } from '@chakra-ui/react';
 import UserListItem from './UserListItem';
 import { getUsers, addUser, editUser, deleteUser } from '../utils/api';
 import UserModal from './UserModal';
 
 const UserList = () => {
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedUser, setSelectedUser] = useState(null);
-  const toast = useToast();
-
-  const fetchUsers = async () => {
-    try {
-      const data = await getUsers();
-      setUsers(data);
-      setLoading(false);
-    } catch (error) {
-      setError(error.message);
-      setLoading(false);
-      toast({
-        title: 'Error',
-        description: 'Failed to fetch data from server',
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-      });
-    }
-  };
+    const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedUser, setSelectedUser] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const [limit] = useState(4); 
+    const toast = useToast();
+  
+    const fetchUsers = async () => {
+      try {
+        const data = await getUsers(currentPage, limit );
+        setUsers(data);
+        setLoading(false);
+        const totalCount = await getUsers({ _limit: 1 });
+        setTotalPages(Math.ceil(totalCount.length / limit));
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+        toast({
+          title: 'Error',
+          description: 'Failed to fetch data from server',
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
+      }
+    };
+  
+    useEffect(() => {
+      fetchUsers();
+    }, [currentPage, toast]);
   
   useEffect(() => {
     fetchUsers();
@@ -115,6 +124,14 @@ const UserList = () => {
     setIsModalOpen(false);
   };
 
+  const handlePrevPage = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
+  };
+
   if (loading) return <Spinner />;
 
   return (
@@ -130,6 +147,11 @@ const UserList = () => {
           ))
         )}
       </Grid>
+      <Flex justify="center" mt={5} mb={5}>
+        <Button variant="outline" onClick={handlePrevPage} disabled={currentPage === 1} boxShadow="1px 1px 1px black">Previous</Button>
+        <Text fontWeight="600" mx={4} pt={2}>{currentPage} / {totalPages}</Text>
+        <Button variant="outline" onClick={handleNextPage} disabled={currentPage === totalPages} boxShadow="1px 1px 1px black">Next</Button>
+      </Flex>
       {isModalOpen && (
         <UserModal
           isOpen={isModalOpen}
