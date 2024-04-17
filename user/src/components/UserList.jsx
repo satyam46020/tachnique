@@ -157,7 +157,7 @@ const UserList = () => {
       <Flex justifyContent="center">
       <Button colorScheme="green" onClick={() => openModal()} mt={10} align>Add User</Button>
       </Flex>
-      <Grid templateColumns="repeat(auto-fill, minmax(300px, 1fr))" gap={4} m={20} justifyContent={'center'} justifyItems={'center'}>
+      <Grid templateColumns="repeat(auto-fill, minmax(300px, 1fr))" gap={5} m={20} justifyContent={'center'}>
         {users.length === 0 ? (
           <Text>No users found.</Text>
         ) : (
