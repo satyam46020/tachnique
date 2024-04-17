@@ -4,10 +4,12 @@
 User Managament Dashboard is a webpage in which all the users with their id, name, email and website are being displayed in the form of cards. One can manupulate the data i.e perform CRUD operation onto the website.  
 
 ## Project Type
+
 Frontend 
 
 ## Deplolyed App
-Frontend: 
+
+![Click here to visit website](https://user-rho-eight.vercel.app/)
 
 ## Directory Structure
 user/
@@ -24,14 +26,14 @@ user/
 
 ## Video Walkthrough of the project
 
-## Video Walkthrough of the codebase
+![Click here to open the video](https://drive.google.com/file/d/15Be3c8RmQCd9ftz6CxcLpzIF1W2LDzgg/view?usp=sharing)
 
 ## Features
 List out the key features of your application.
 
-- New user creation feature is added.
-- Specific user is editable.
-- One can delete specific user.
+- New user can be added.
+- Every user is editable.
+- One can delete any user.
 - Pagination is being implemented with infinite scrolling feature.
 
 ## design decisions or assumptions
@@ -49,6 +51,14 @@ npm start
 ```
 
 ## Scrrenshots
+
+![DashBoard](./user/src/assets/DashBoard.png)
+
+![DashBoard after scroll](./user/src/assets/DashBoard_after_scroll.png)
+
+![Add user modal](./user/src/assets/Add_modal.png)
+
+![Edit user modal](./user/src/assets/Edit_modal.png)
 
 ## APIs Used
 

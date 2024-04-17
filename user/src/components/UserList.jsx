@@ -154,8 +154,10 @@ const UserList = () => {
   return (
     <>
       <Text align={'center'} fontSize="xxx-large" pt={5}>User Management Dashboard</Text>
-      <Button colorScheme="green" onClick={() => openModal()} mt={10} ml={"45%"}>Add User</Button>
-      <Grid templateColumns="repeat(auto-fill, minmax(300px, 1fr))" gap={4} m={20}>
+      <Flex justifyContent="center">
+      <Button colorScheme="green" onClick={() => openModal()} mt={10} align>Add User</Button>
+      </Flex>
+      <Grid templateColumns="repeat(auto-fill, minmax(300px, 1fr))" gap={4} m={20} justifyContent={'center'} justifyItems={'center'}>
         {users.length === 0 ? (
           <Text>No users found.</Text>
         ) : (
