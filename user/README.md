@@ -12,17 +12,22 @@ Frontend
 [Click here to visit website](https://user-rho-eight.vercel.app/)
 
 ## Directory Structure
+
 user/
-├─ src/
-│ ├─ components/
-│ │ ├─ UserList.jsx
-│ │ ├─ UserListItem.jsx
-│ │ ├─ UserModal.jsx
-│ ├─ utils/
-│ │ ├─ api.js
-│ ├─ app.js
-│ ├─ index.js
-├─ package.json
+├── src/
+├──├── assets/
+├──├── components/
+├──├──├── UserList.jsx
+├──├──├── UserListItem.jsx
+├──├──├── UserModal.jsx
+├──├── utils/
+├──├──├── api.js
+├──├── app.js
+├──├── index.js
+├── .gitignore
+├── package-lock.json
+├── package.json
+├── README.md
 
 ## Video Walkthrough of the project
 

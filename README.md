@@ -9,24 +9,29 @@ Frontend
 
 ## Deplolyed App
 
-![Click here to visit website](https://user-rho-eight.vercel.app/)
+[Click here to visit website](https://user-rho-eight.vercel.app/)
 
 ## Directory Structure
+
 user/
-├─ src/
-│ ├─ components/
-│ │ ├─ UserList.jsx
-│ │ ├─ UserListItem.jsx
-│ │ ├─ UserModal.jsx
-│ ├─ utils/
-│ │ ├─ api.js
-│ ├─ app.js
-│ ├─ index.js
-├─ package.json
+├── src/
+├──├── assets/
+├──├── components/
+├──├──├── UserList.jsx
+├──├──├── UserListItem.jsx
+├──├──├── UserModal.jsx
+├──├── utils/
+├──├──├── api.js
+├──├── app.js
+├──├── index.js
+├── .gitignore
+├── package-lock.json
+├── package.json
+├── README.md
 
 ## Video Walkthrough of the project
 
-![Click here to open the video](https://drive.google.com/file/d/15Be3c8RmQCd9ftz6CxcLpzIF1W2LDzgg/view?usp=sharing)
+[Click here to open the video](https://drive.google.com/file/d/15Be3c8RmQCd9ftz6CxcLpzIF1W2LDzgg/view?usp=sharing)
 
 ## Features
 List out the key features of your application.
