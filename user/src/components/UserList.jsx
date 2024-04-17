@@ -107,7 +107,7 @@ const UserList = () => {
   const handleDeleteUser = async (userId) => {
     try {
       await deleteUser(userId);
-      fetchUsers();
+    //   fetchUsers();
       toast({
         title: 'Success',
         description: 'User deleted successfully',
