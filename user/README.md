@@ -14,14 +14,14 @@ Frontend
 ## Directory Structure
 user/
 ├─ src/
-│  ├─ components/
-│  │  ├─ UserList.jsx
-│  │  ├─ UserListItem.jsx
-│  │  ├─ UserModal.jsx
-│  ├─ utils/
-│  │  ├─ api.js
-│  ├─ app.js
-│  ├─ index.js
+│ ├─ components/
+│ │ ├─ UserList.jsx
+│ │ ├─ UserListItem.jsx
+│ │ ├─ UserModal.jsx
+│ ├─ utils/
+│ │ ├─ api.js
+│ ├─ app.js
+│ ├─ index.js
 ├─ package.json
 
 ## Video Walkthrough of the project

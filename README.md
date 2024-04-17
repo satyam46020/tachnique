@@ -14,14 +14,14 @@ Frontend
 ## Directory Structure
 user/
 ├─ src/
-│  ├─ components/
-│  │  ├─ UserList.jsx
-│  │  ├─ UserListItem.jsx
-│  │  ├─ UserModal.jsx
-│  ├─ utils/
-│  │  ├─ api.js
-│  ├─ app.js
-│  ├─ index.js
+│ ├─ components/
+│ │ ├─ UserList.jsx
+│ │ ├─ UserListItem.jsx
+│ │ ├─ UserModal.jsx
+│ ├─ utils/
+│ │ ├─ api.js
+│ ├─ app.js
+│ ├─ index.js
 ├─ package.json
 
 ## Video Walkthrough of the project
@@ -52,13 +52,23 @@ npm start
 
 ## Scrrenshots
 
+**DashBoard**
+
 ![DashBoard](./user/src/assets/DashBoard.png)
+
+**DashBoard after scroll**
 
 ![DashBoard after scroll](./user/src/assets/DashBoard_after_scroll.png)
 
+**Add user modal**
+
 ![Add user modal](./user/src/assets/Add_modal.png)
 
+**Edit user modal** 
+
 ![Edit user modal](./user/src/assets/Edit_modal.png)
+
+**Mobile Screen**
 
 ![Mobile Screen](./user/src/assets/Mobile_screen.png)
 

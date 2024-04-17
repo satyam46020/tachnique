@@ -1,0 +1,74 @@
+{
+    "users": [
+                {
+                "id": 1,
+                "firstname": "Leanne",
+                "lastname": "Graham",
+                "email": "Sincere@april.biz",
+                "department": "IT"      
+                },
+                {
+                "id": 2,
+                "firstname": "Ervin",
+                "lastname": "Howell",
+                "email": "Shanna@melissa.tv",
+                "department": "CSE"      
+                },
+                {
+                "id": 3,
+                "firstname": "Clementine",
+                "lastname": "Bauch",
+                "email": "Nathan@yesenia.net",
+                "department": "Mechanical"      
+                },
+                {
+                "id": 4,
+                "firstname": "Patricia ",
+                "lastname": "Lebsack",
+                "email": "Julianne.OConner@kory.org",
+                "department": "English"      
+                },
+                {
+                "id": 5,
+                "firstname": "Chelsey",
+                "lastname": "Dietrich",
+                "email": "Lucio_Hettinger@annie.ca",
+                "department": "IT"      
+                },
+                {
+                "id": 6,
+                "firstname": "Dennis",
+                "lastname": "Schulist",
+                "email": "Karley_Dach@jasper.info",
+                "department": "CSE"      
+                },
+                {
+                "id": 7,
+                "firstname": "Kurtis",
+                "lastname": "Weissnat",
+                "email": "Telly.Hoeger@billy.biz",
+                "department": "Mechanical"      
+                },
+                {
+                "id": 8,
+                "firstname": "Nicholas",
+                "lastname": "Runolfsdottir",
+                "email": "Sherwood@rosamond.me",
+                "department": "ECE"      
+                },
+                {
+                "id": 9,
+                "firstname": "Glenna",
+                "lastname": "Reichert",
+                "email": "Chaim_McDermott@dana.io",
+                "department": "Mechanical"      
+                },
+                {
+                "id": 10,
+                "firstname": "Clementina",
+                "lastname": "DuBuque",
+                "email": "Rey.Padberg@karina.biz",
+                "department": "ECE"      
+                }
+            ]
+}
