@@ -43,15 +43,13 @@ const UserList = () => {
     useEffect(() => {
       fetchUsers();
     }, [currentPage, toast]);
-  
-    useEffect(() => {
-      fetchUsers();
-    }, [toast]);
 
   const handleAddUser = async (userData) => {
     try {
-      await addUser(userData);
-      fetchUsers();
+      const data = await addUser(userData);
+      await setUsers((prevUsers) => [...prevUsers, data]);
+      console.log(users)
+    //   fetchUsers();
       toast({
         title: 'Success',
         description: 'User added successfully',
@@ -60,6 +58,7 @@ const UserList = () => {
         isClosable: true,
       });
       closeModal();
+      console.log(users);
     } catch (error) {
       setError(error.message);
       toast({
@@ -72,10 +71,19 @@ const UserList = () => {
     }
   };
 
-  const handleEditUser = async (userData) => {
+  const handleEditUser = async (userId, userData) => {
     try {
-      await editUser(selectedUser.id, userData);
-      fetchUsers();
+      const data = await editUser(userId, userData);
+      setUsers((prevUsers) => {
+        const updatedUsers = prevUsers.map((user) => {
+          if (user.id === data.id) {
+            return { ...user, ...data };
+          }
+          return user;
+        });
+        return updatedUsers;
+      })
+
       toast({
         title: 'Success',
         description: 'User edited successfully',

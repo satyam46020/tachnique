@@ -8,9 +8,10 @@ const UserListItem = ({ user, onEdit, onDelete }) => {
     <Box p={4} borderRadius="md" boxShadow="md" _hover={{ shadow: 'lg', cursor: 'pointer', bg: 'gray.200' }}>
       <Flex direction="column" align={'center'}>
         <Text fontWeight="bold" fontSize="xl" mb={2}>ID: {user.id}</Text>
-        <Text fontWeight="bold" fontSize="lg" mb={2}>Name: {user.name}</Text>
+        <Text fontWeight="bold" fontSize="lg" mb={2}>First Name: {user.name.split(" ")[0]}</Text>
+        <Text fontWeight="bold" fontSize="lg" mb={2}>Last Name: {user.name.split(" ")[1]}</Text>
         <Text fontSize="md" mb={2}>Email: {user.email}</Text>
-        <Text fontSize="md" mb={4}>Website: {user.website}</Text>
+        <Text fontSize="md" mb={4}>Department: {user.company.name}</Text>
         <Flex justify="space-around" w="100%">
           <IconButton
             icon={<EditIcon />}

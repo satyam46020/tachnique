@@ -1,5 +1,6 @@
 const BASE_URL = 'https://jsonplaceholder.typicode.com';
 
+// Fetch
 export const getUsers = async (page, limit) => {
   const response = await fetch(`${BASE_URL}/users?_page=${page}&_limit=${limit}`);
   if (!response.ok) {
@@ -8,6 +9,7 @@ export const getUsers = async (page, limit) => {
   return response.json();
 };
 
+// Create
 export const addUser = async (userData) => {
   const response = await fetch(`${BASE_URL}/users`, {
     method: 'POST',
@@ -19,10 +21,11 @@ export const addUser = async (userData) => {
   if (!response.ok) {
     throw new Error('Failed to add user');
   }
-  console.log(await response.json())
-  return response;
+  const data = await response.json();
+  return data;
 };
 
+// Edit
 export const editUser = async (userId, userData) => {
     const response = await fetch(`${BASE_URL}/users/${userId}`, {
       method: 'PATCH',
@@ -34,9 +37,11 @@ export const editUser = async (userId, userData) => {
     if (!response.ok) {
       throw new Error('Failed to edit user');
     }
-    console.log(await response.json())
+    const data = await response.json()
+    return data;
 };
 
+// Delete
 export const deleteUser = async (userId) => {
     const response = await fetch(`${BASE_URL}/users/${userId}`, {
         method: 'DELETE',
@@ -45,5 +50,4 @@ export const deleteUser = async (userId) => {
         throw new Error('Failed to delete user');
     }
     console.log( await response.json())
-    // console.log(await response.json())
 };

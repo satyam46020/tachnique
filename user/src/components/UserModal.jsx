@@ -1,25 +1,36 @@
 import React, { useState } from 'react';
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Input, Button } from '@chakra-ui/react';
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Input, Button, Spinner } from '@chakra-ui/react';
 import { addUser, editUser } from '../utils/api';
 
 const UserModal = ({ isOpen, onClose, onSubmit, user }) => {
-  const [name, setName] = useState(user ? user.name : '');
+  const [firstName, setFirstName] = useState(user ? user.name.split(" ")[0] : '');
+  const [lastName, setLastName] = useState(user ? user.name.split(" ")[1] : '');
   const [email, setEmail] = useState(user ? user.email : '');
-  const [website, setWebsite] = useState(user ? user.website : '');
+  const [department, setDepartment] = useState(user ? user.company.name : '');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async () => {
+    setIsLoading(true); 
     const userData = {
-      name,
+      name:firstName+" "+lastName,
       email,
-      website,
+      company:{name:department},
     };
-    if (user) {
-      await editUser(user.id, userData);
-    } else {
-      await addUser(userData);
+    console.log(userData)
+    try {
+      if (user) {
+          await onSubmit(user.id, userData);
+          // await editUser(user.id, userData);
+        } else {
+          await onSubmit(userData);
+        // await addUser(userData);
+      }
+      onClose();
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setIsLoading(false);
     }
-    onSubmit();
-    onClose();
   };
 
   return (
@@ -29,13 +40,14 @@ const UserModal = ({ isOpen, onClose, onSubmit, user }) => {
         <ModalHeader>{user ? 'Edit User' : 'Add User'}</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <Input value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" mb={2} />
+          <Input value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="First Name" mb={2} />
+          <Input value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Last Name" mb={2} />
           <Input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" mb={2} />
-          <Input value={website} onChange={(e) => setWebsite(e.target.value)} placeholder="Website" mb={2} />
+          <Input value={department} onChange={(e) => setDepartment(e.target.value)} placeholder="Department" mb={2} />
         </ModalBody>
         <ModalFooter>
-          <Button colorScheme="blue" mr={3} onClick={handleSubmit}>
-            Save
+          <Button colorScheme="blue" mr={3} onClick={handleSubmit} disabled={isLoading}>
+            {isLoading ? <Spinner size="sm" /> : 'Save'}
           </Button>
           <Button onClick={onClose}>Cancel</Button>
         </ModalFooter>
