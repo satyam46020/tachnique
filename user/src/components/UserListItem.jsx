@@ -1,8 +1,15 @@
-import React from 'react';
-import { Box, Text, IconButton, Flex } from '@chakra-ui/react';
+import React, { useState } from 'react';
+import { Box, Text, IconButton, Flex, Spinner } from '@chakra-ui/react';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 
 const UserListItem = ({ user, onEdit, onDelete }) => {
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const handleDelete = async () => {
+    setIsDeleting(true);
+    await onDelete();
+    setIsDeleting(false);
+  };
 
   return (
     <Box p={4} borderRadius="md" boxShadow="md" _hover={{ shadow: 'lg', cursor: 'pointer', bg: 'gray.200' }}>
@@ -20,10 +27,11 @@ const UserListItem = ({ user, onEdit, onDelete }) => {
             onClick={onEdit}
           />
           <IconButton
-            icon={<DeleteIcon />}
+            icon={isDeleting ? <Spinner size="sm" /> : <DeleteIcon />}
             colorScheme="red"
             aria-label="Delete"
-            onClick={onDelete}
+            onClick={handleDelete}
+            disabled={isDeleting}
           />
         </Flex>
       </Flex>
