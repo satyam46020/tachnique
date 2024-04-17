@@ -7,9 +7,9 @@ User Management Dashboard is a webpage in which all the users with their id, nam
 
 Frontend 
 
-## Deployed App
+## Deployed Webpage
 
-[Click here to visit website](https://user-rho-eight.vercel.app/)
+[Click here to visit webpage](https://user-rho-eight.vercel.app/)
 
 ## Directory Structure
 
@@ -46,15 +46,12 @@ Frontend
 [Click here to open the video](https://drive.google.com/file/d/15Be3c8RmQCd9ftz6CxcLpzIF1W2LDzgg/view?usp=sharing)
 
 ## Features
-List out the key features of your application.
+List of the key features of my application:
 
 - New user can be added.
 - Every user is editable.
 - One can delete any user.
 - Pagination is being implemented with infinite scrolling feature.
-
-## design decisions or assumptions
-List your design desissions & assumptions
 
 ## Installation & Getting started
 Detailed instructions on how to install, configure, and get the project running. 
@@ -67,38 +64,38 @@ npm install
 npm start
 ```
 
-## Scrrenshots
+## Screenshots
 
-**DashBoard**
+### DashBoard
 
 ![DashBoard](./user/src/assets/DashBoard.png)
 
-**DashBoard after scroll**
+### DashBoard after scroll
 
 ![DashBoard after scroll](./user/src/assets/DashBoard_after_scroll.png)
 
-**Add user modal**
+### Add user modal
 
 ![Add user modal](./user/src/assets/Add_modal.png)
 
-**Edit user modal** 
+### Edit user modal
 
 ![Edit user modal](./user/src/assets/Edit_modal.png)
 
-**Mobile Screen**
+### Mobile Screen
 
 ![Mobile Screen](./user/src/assets/Mobile_screen.png)
 
 ## APIs Used
 
-https://jsonplaceholder.typicode.com/
+![JSON Server](https://jsonplaceholder.typicode.com/)
 
 ## API Endpoints
 
-"/users" endpoint is being used for performing CRUD opreration.
+"/users" endpoint is being used for performing CRUD operation.
 
 ## Technology Stack
-List and provide a brief overview of the technologies used in the project.
+List of the technologies used in the project.
 
 - React.js
 - Chakra UI
