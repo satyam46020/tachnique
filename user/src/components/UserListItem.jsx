@@ -12,13 +12,13 @@ const UserListItem = ({ user, onEdit, onDelete }) => {
   };
 
   return (
-    <Box p={4} borderRadius="md" boxShadow="md" _hover={{ shadow: 'lg', cursor: 'pointer', bg: 'gray.200' }}>
-      <Flex direction="column" align={'center'}>
-        <Text fontWeight="bold" fontSize="xl" mb={2}>ID: {user.id}</Text>
-        <Text fontWeight="bold" fontSize="lg" mb={2}>First Name: {user.name.split(" ")[0]}</Text>
-        <Text fontWeight="bold" fontSize="lg" mb={2}>Last Name: {user.name.split(" ")[1]}</Text>
-        <Text fontSize="md" mb={2}>Email: {user.email}</Text>
-        <Text fontSize="md" mb={4}>Department: {user.company.name}</Text>
+    <Box p={4} borderRadius="md" boxShadow="2px 2px 20px teal" _hover={{ shadow: '2px 2px 20px brown', cursor: 'pointer', bg: 'gray.200' }}>
+      <Flex direction="column" align="center">
+        <Text fontWeight="bold" fontSize="xl" mb={2} fontFamily="Arial">ID: <Text as="span" fontWeight="normal" color="grey" >{user.id}</Text></Text>
+        <Text fontWeight="bold" fontSize="lg" mb={2} fontFamily="Arial">First Name: <Text as="span" fontWeight="normal" color="grey" >{user.name.split(" ")[0]}</Text></Text>
+        <Text fontWeight="bold" fontSize="lg" mb={2} fontFamily="Arial">Last Name: <Text as="span" fontWeight="normal" color="grey" >{user.name.split(" ")[1]}</Text></Text>
+        <Text fontWeight="bold" fontSize="md" mb={2} fontFamily="Arial">Email: <Text as="span" fontWeight="normal" color="grey" >{user.email}</Text></Text>
+        <Text fontWeight="bold" fontSize="md" mb={4} fontFamily="Arial">Department: <Text as="span" fontWeight="normal" color="grey" >{user.company.name}</Text></Text>
         <Flex justify="space-around" w="100%">
           <IconButton
             icon={<EditIcon />}

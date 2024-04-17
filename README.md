@@ -60,6 +60,8 @@ npm start
 
 ![Edit user modal](./user/src/assets/Edit_modal.png)
 
+![Mobile Screen](./user/src/assets/Mobile_screen.png)
+
 ## APIs Used
 
 https://jsonplaceholder.typicode.com/

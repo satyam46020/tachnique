@@ -1,5 +1,20 @@
 import React, { useState } from 'react';
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Input, Button, Spinner, FormControl, FormErrorMessage } from '@chakra-ui/react';
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Input,
+  Button,
+  Spinner,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Text,
+} from '@chakra-ui/react';
 
 const UserModal = ({ isOpen, onClose, onSubmit, user }) => {
   const [firstName, setFirstName] = useState(user ? user.name.split(" ")[0] : '');
@@ -57,31 +72,43 @@ const UserModal = ({ isOpen, onClose, onSubmit, user }) => {
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>{user ? 'Edit User' : 'Add User'}</ModalHeader>
+        <ModalHeader fontWeight={"700"} fontSize={30} textColor={'teal'}>{user ? 'Edit User' : 'Add User'}</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <FormControl isInvalid={errors.firstName}>
-            <Input value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="First Name" mt={3} />
+          <FormControl isRequired isInvalid={errors.firstName} mb={4}>
+            <FormLabel>
+              First Name<Text as="span" color="red"></Text>
+            </FormLabel>
+            <Input textColor={'teal'} value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="First Name" />
             <FormErrorMessage>{errors.firstName}</FormErrorMessage>
           </FormControl>
-          <FormControl isInvalid={errors.lastName}>
-            <Input value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Last Name" mt={3} />
+          <FormControl isRequired isInvalid={errors.lastName} mb={4}>
+            <FormLabel>
+              Last Name<Text as="span" color="red"></Text>
+            </FormLabel>
+            <Input textColor={'teal'} value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Last Name" />
             <FormErrorMessage>{errors.lastName}</FormErrorMessage>
           </FormControl>
-          <FormControl isInvalid={errors.email}>
-            <Input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" mt={3} />
+          <FormControl isRequired isInvalid={errors.email} mb={4}>
+            <FormLabel>
+              Email<Text as="span" color="red"></Text>
+            </FormLabel>
+            <Input textColor={'teal'} value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
             <FormErrorMessage>{errors.email}</FormErrorMessage>
           </FormControl>
-          <FormControl isInvalid={errors.department}>
-            <Input value={department} onChange={(e) => setDepartment(e.target.value)} placeholder="Department" mt={3} />
+          <FormControl isRequired isInvalid={errors.department} mb={4}>
+            <FormLabel>
+              Department<Text as="span" color="red"></Text>
+            </FormLabel>
+            <Input textColor={'teal'} value={department} onChange={(e) => setDepartment(e.target.value)} placeholder="Department" />
             <FormErrorMessage>{errors.department}</FormErrorMessage>
           </FormControl>
         </ModalBody>
         <ModalFooter>
-          <Button colorScheme="blue" mr={3} onClick={handleSubmit} disabled={isLoading}>
-            {isLoading ? <Spinner size="sm" /> : 'Save'}
+          <Button colorScheme="teal" mr={3} onClick={handleSubmit} isLoading={isLoading}>
+            Save
           </Button>
-          <Button onClick={onClose}>Cancel</Button>
+          <Button onClick={onClose} textColor={'teal'}>Cancel</Button>
         </ModalFooter>
       </ModalContent>
     </Modal>

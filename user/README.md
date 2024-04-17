@@ -9,7 +9,7 @@ Frontend
 
 ## Deplolyed App
 
-![Click here to visit website](https://user-rho-eight.vercel.app/)
+[Click here to visit website](https://user-rho-eight.vercel.app/)
 
 ## Directory Structure
 user/
@@ -26,7 +26,7 @@ user/
 
 ## Video Walkthrough of the project
 
-![Click here to open the video](https://drive.google.com/file/d/15Be3c8RmQCd9ftz6CxcLpzIF1W2LDzgg/view?usp=sharing)
+[Click here to open the video](https://drive.google.com/file/d/15Be3c8RmQCd9ftz6CxcLpzIF1W2LDzgg/view?usp=sharing)
 
 ## Features
 List out the key features of your application.
@@ -59,6 +59,8 @@ npm start
 ![Add user modal](./src/assets/Add_modal.png)
 
 ![Edit user modal](./src/assets/Edit_modal.png)
+
+![Mobile Screen](./src/assets/Mobile_screen.png)
 
 ## APIs Used
 

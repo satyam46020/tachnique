@@ -153,9 +153,9 @@ const UserList = () => {
 
   return (
     <>
-      <Text align={'center'} fontSize="xxx-large" pt={5}>User Management Dashboard</Text>
+<Text align={'center'} fontSize="xxx-large" pt={5} fontWeight="bold" color="teal.500">User Management Dashboard</Text>
       <Flex justifyContent="center">
-      <Button colorScheme="green" onClick={() => openModal()} mt={10} align>Add User</Button>
+        <Button textColor={'teal'} colorScheme="white" onClick={() => openModal()} mt={10} border={"1px solid teal"}>Add User</Button>
       </Flex>
       <Grid templateColumns="repeat(auto-fill, minmax(300px, 1fr))" gap={5} m={20} justifyContent={'center'}>
         {users.length === 0 ? (
