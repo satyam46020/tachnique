@@ -13,7 +13,6 @@ Frontend
 
 ## Directory Structure
 
-user/
 ├── src/
 ├──├── assets/
 ├──├── components/
