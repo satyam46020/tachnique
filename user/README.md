@@ -14,18 +14,31 @@ Frontend
 ## Directory Structure
 
 ├── src/
+
 ├──├── assets/
+
 ├──├── components/
+
 ├──├──├── UserList.jsx
+
 ├──├──├── UserListItem.jsx
+
 ├──├──├── UserModal.jsx
+
 ├──├── utils/
+
 ├──├──├── api.js
+
 ├──├── app.js
+
 ├──├── index.js
+
 ├── .gitignore
+
 ├── package-lock.json
+
 ├── package.json
+
 ├── README.md
 
 ## Video Walkthrough of the project
