@@ -1,7 +1,7 @@
 # Tachnique
 
 ## Introduction
-User Managament Dashboard is a webpage in which all the users with their id, name, email and website are being displayed in the form of cards. One can manupulate the data i.e perform CRUD operation onto the website.  
+User Management Dashboard is a webpage in which all the users with their id, name, email and website are being displayed in the form of cards. One can manupulate the data i.e perform CRUD operation onto the website.  
 
 ## Project Type
 
