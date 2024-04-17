@@ -49,7 +49,6 @@ const UserList = () => {
       const data = await addUser(userData);
       await setUsers((prevUsers) => [...prevUsers, data]);
       console.log(users)
-    //   fetchUsers();
       toast({
         title: 'Success',
         description: 'User added successfully',
@@ -107,7 +106,7 @@ const UserList = () => {
   const handleDeleteUser = async (userId) => {
     try {
       await deleteUser(userId);
-    //   fetchUsers();
+      setUsers(prevUsers => prevUsers.filter(user => user.id !== userId));
       toast({
         title: 'Success',
         description: 'User deleted successfully',

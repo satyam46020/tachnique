@@ -49,5 +49,5 @@ export const deleteUser = async (userId) => {
     if (!response.ok) {
         throw new Error('Failed to delete user');
     }
-    console.log( await response.json())
+    console.log("deleted")
 };
