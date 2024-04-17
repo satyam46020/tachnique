@@ -88,7 +88,7 @@ npm start
 
 ## APIs Used
 
-![JSON Server](https://jsonplaceholder.typicode.com/)
+[JSON Server](https://jsonplaceholder.typicode.com/)
 
 ## API Endpoints
 
