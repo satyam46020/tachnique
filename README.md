@@ -46,7 +46,6 @@ Frontend
 [Click here to open the video](https://drive.google.com/file/d/15Be3c8RmQCd9ftz6CxcLpzIF1W2LDzgg/view?usp=sharing)
 
 ## Features
-List of the key features of my application:
 
 - New user can be added.
 - Every user is editable.
@@ -54,7 +53,6 @@ List of the key features of my application:
 - Pagination is being implemented with infinite scrolling feature.
 
 ## Installation & Getting started
-Detailed instructions on how to install, configure, and get the project running. 
 
 ```bash
 npm install 
@@ -66,11 +64,11 @@ npm start
 
 ## Screenshots
 
-### DashBoard
+### Dashboard
 
 ![DashBoard](./user/src/assets/DashBoard.png)
 
-### DashBoard after scroll
+### Dashboard after scroll
 
 ![DashBoard after scroll](./user/src/assets/DashBoard_after_scroll.png)
 
@@ -95,7 +93,6 @@ npm start
 "/users" endpoint is being used for performing CRUD operation.
 
 ## Technology Stack
-List of the technologies used in the project.
 
 - React.js
 - Chakra UI
