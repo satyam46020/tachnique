@@ -128,19 +128,6 @@ const UserList = () => {
         setIsModalOpen(false);
     };
 
-    const handleScroll = () => {
-        if (window.innerHeight + window.scrollY > document.body.offsetHeight) {
-            setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
-        }
-    };
-
-    useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
-        // return () => {
-        //     window.removeEventListener('scroll', handleScroll);
-        // };
-    }, [totalPages]);
-
     const handleNextPage = () => {
         setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
     };
