@@ -12,13 +12,17 @@ const UserList = () => {
     const [selectedUser, setSelectedUser] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const [limit] = useState(4); 
+    const [limit] = useState(5); 
     const toast = useToast();
   
     const fetchUsers = async () => {
         try {
           const data = await getUsers(currentPage, limit);
+          if (currentPage === 1) {
             setUsers(data); 
+          } else {
+            setUsers((prevUsers) => [...prevUsers, ...data]);
+          }
           setLoading(false);
           const totalCount = await getUsers({ _limit: 1 });
           setTotalPages(Math.ceil(totalCount.length / limit));
@@ -128,6 +132,19 @@ const UserList = () => {
         setIsModalOpen(false);
     };
 
+    const handleScroll = () => {
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+            setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [totalPages]);
+
     const handleNextPage = () => {
         setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
     };
@@ -154,9 +171,9 @@ const UserList = () => {
                 )}
             </Grid>
             <Flex justify="center"mt={-10} mb={5}>
-                <Button onClick={handlePrevPage} disabled={currentPage === 1} mr={2} colorScheme={'teal'}>-</Button>
-                <Text fontWeight="600" mx={4} pt={2} color={'teal'}>{currentPage}</Text>
-                <Button onClick={handleNextPage} disabled={currentPage === totalPages} ml={2} colorScheme={'teal'}>+</Button>
+                <Button onClick={handlePrevPage} disabled={currentPage === 1} mr={2}>Previous</Button>
+                <Text fontWeight="600" mx={4} pt={2}>{currentPage} / {totalPages}</Text>
+                <Button onClick={handleNextPage} disabled={currentPage === totalPages} ml={2}>Next</Button>
             </Flex>
             {isModalOpen && (
                 <UserModal
