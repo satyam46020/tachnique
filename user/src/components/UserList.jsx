@@ -12,17 +12,13 @@ const UserList = () => {
     const [selectedUser, setSelectedUser] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const [limit] = useState(5); 
+    const [limit] = useState(4); 
     const toast = useToast();
   
     const fetchUsers = async () => {
         try {
-          const data = await getUsers(currentPage, limit );
-          if (currentPage === 1) {
+          const data = await getUsers(currentPage, limit);
             setUsers(data); 
-          } else {
-            setUsers((prevUsers) => [...prevUsers, ...data]);
-          }
           setLoading(false);
           const totalCount = await getUsers({ _limit: 1 });
           setTotalPages(Math.ceil(totalCount.length / limit));
@@ -37,148 +33,154 @@ const UserList = () => {
             isClosable: true,
           });
         }
-      };
-      
+    };
 
     useEffect(() => {
-      fetchUsers();
+        fetchUsers();
     }, [currentPage, toast]);
 
-  const handleAddUser = async (userData) => {
-    try {
-      const data = await addUser(userData);
-      await setUsers((prevUsers) => [...prevUsers, data]);
-      console.log(users)
-      toast({
-        title: 'Success',
-        description: 'User added successfully',
-        status: 'success',
-        duration: 5000,
-        isClosable: true,
-      });
-      closeModal();
-      console.log(users);
-    } catch (error) {
-      setError(error.message);
-      toast({
-        title: 'Error',
-        description: 'Failed to add user',
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-      });
-    }
-  };
-
-  const handleEditUser = async (userId, userData) => {
-    try {
-      const data = await editUser(userId, userData);
-      setUsers((prevUsers) => {
-        const updatedUsers = prevUsers.map((user) => {
-          if (user.id === data.id) {
-            return { ...user, ...data };
-          }
-          return user;
-        });
-        return updatedUsers;
-      })
-
-      toast({
-        title: 'Success',
-        description: 'User edited successfully',
-        status: 'success',
-        duration: 5000,
-        isClosable: true,
-      });
-      closeModal();
-    } catch (error) {
-      setError(error.message);
-      toast({
-        title: 'Error',
-        description: 'Failed to edit user',
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-      });
-    }
-  };
-
-  const handleDeleteUser = async (userId) => {
-    try {
-      await deleteUser(userId);
-      setUsers(prevUsers => prevUsers.filter(user => user.id !== userId));
-      toast({
-        title: 'Success',
-        description: 'User deleted successfully',
-        status: 'success',
-        duration: 5000,
-        isClosable: true,
-      });
-    } catch (error) {
-      setError(error.message);
-      toast({
-        title: 'Error',
-        description: 'Failed to delete user',
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-      });
-    }
-  };
-
-  const openModal = (user = null) => {
-    setSelectedUser(user);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setSelectedUser(null);
-    setIsModalOpen(false);
-  };
-
-  const handleScroll = () => {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-      setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
+    const handleAddUser = async (userData) => {
+        try {
+            const data = await addUser(userData);
+            await setUsers((prevUsers) => [...prevUsers, data]);
+            toast({
+                title: 'Success',
+                description: 'User added successfully',
+                status: 'success',
+                duration: 5000,
+                isClosable: true,
+            });
+            closeModal();
+        } catch (error) {
+            setError(error.message);
+            toast({
+                title: 'Error',
+                description: 'Failed to add user',
+                status: 'error',
+                duration: 5000,
+                isClosable: true,
+            });
+        }
     };
-  }, [totalPages]);
 
-  if (loading) return <Spinner />;
+    const handleEditUser = async (userId, userData) => {
+        try {
+            const data = await editUser(userId, userData);
+            setUsers((prevUsers) => {
+                const updatedUsers = prevUsers.map((user) => {
+                    if (user.id === data.id) {
+                        return { ...user, ...data };
+                    }
+                    return user;
+                });
+                return updatedUsers;
+            });
+            toast({
+                title: 'Success',
+                description: 'User edited successfully',
+                status: 'success',
+                duration: 5000,
+                isClosable: true,
+            });
+            closeModal();
+        } catch (error) {
+            setError(error.message);
+            toast({
+                title: 'Error',
+                description: 'Failed to edit user',
+                status: 'error',
+                duration: 5000,
+                isClosable: true,
+            });
+        }
+    };
 
-  return (
-    <>
-<Text align={'center'} fontSize="xxx-large" pt={5} fontWeight="bold" color="teal.500">User Management Dashboard</Text>
-      <Flex justifyContent="center">
-        <Button textColor={'teal'} colorScheme="white" onClick={() => openModal()} mt={10} border={"1px solid teal"}>Add User</Button>
-      </Flex>
-      <Grid templateColumns="repeat(auto-fill, minmax(300px, 1fr))" gap={5} m={20} justifyContent={'center'}>
-        {users.length === 0 ? (
-          <Text>No users found.</Text>
-        ) : (
-          users.map((user) => (
-            <UserListItem key={user.id} user={user} onEdit={() => openModal(user)} onDelete={() => handleDeleteUser(user.id)} />
-          ))
-        )}
-      </Grid>
-      <Flex justify="center" mt={5} mb={5}>
-        <Text fontWeight="600" mx={4} pt={2}>{currentPage} / {totalPages}</Text>
-      </Flex>
-      {isModalOpen && (
-        <UserModal
-          isOpen={isModalOpen}
-          onClose={closeModal}
-          onSubmit={selectedUser ? handleEditUser : handleAddUser}
-          user={selectedUser}
-        />
-      )}
-    </>
-  );
+    const handleDeleteUser = async (userId) => {
+        try {
+            await deleteUser(userId);
+            setUsers(prevUsers => prevUsers.filter(user => user.id !== userId));
+            toast({
+                title: 'Success',
+                description: 'User deleted successfully',
+                status: 'success',
+                duration: 5000,
+                isClosable: true,
+            });
+        } catch (error) {
+            setError(error.message);
+            toast({
+                title: 'Error',
+                description: 'Failed to delete user',
+                status: 'error',
+                duration: 5000,
+                isClosable: true,
+            });
+        }
+    };
+
+    const openModal = (user = null) => {
+        setSelectedUser(user);
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setSelectedUser(null);
+        setIsModalOpen(false);
+    };
+
+    const handleScroll = () => {
+        if (window.innerHeight + window.scrollY > document.body.offsetHeight) {
+            setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        // return () => {
+        //     window.removeEventListener('scroll', handleScroll);
+        // };
+    }, [totalPages]);
+
+    const handleNextPage = () => {
+        setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
+    };
+
+    const handlePrevPage = () => {
+        setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+    };
+
+    if (loading) return <Spinner />;
+
+    return (
+        <>
+            <Text align={'center'} fontSize="xxx-large" pt={5} fontWeight="bold" color="teal.500">User Management Dashboard</Text>
+            <Flex justifyContent="center">
+                <Button textColor={'teal'} colorScheme="white" onClick={() => openModal()} mt={10} border={"1px solid teal"}>Add User</Button>
+            </Flex>
+            <Grid templateColumns="repeat(auto-fill, minmax(300px, 1fr))" gap={5} m={20} justifyContent={'center'}>
+                {users.length === 0 ? (
+                    <Text>No users found.</Text>
+                ) : (
+                    users.map((user) => (
+                        <UserListItem key={user.id} user={user} onEdit={() => openModal(user)} onDelete={() => handleDeleteUser(user.id)} />
+                    ))
+                )}
+            </Grid>
+            <Flex justify="center"mt={-10} mb={5}>
+                <Button onClick={handlePrevPage} disabled={currentPage === 1} mr={2} colorScheme={'teal'}>-</Button>
+                <Text fontWeight="600" mx={4} pt={2} color={'teal'}>{currentPage}</Text>
+                <Button onClick={handleNextPage} disabled={currentPage === totalPages} ml={2} colorScheme={'teal'}>+</Button>
+            </Flex>
+            {isModalOpen && (
+                <UserModal
+                    isOpen={isModalOpen}
+                    onClose={closeModal}
+                    onSubmit={selectedUser ? handleEditUser : handleAddUser}
+                    user={selectedUser}
+                />
+            )}
+        </>
+    );
 };
 
 export default UserList;
