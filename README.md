@@ -68,9 +68,9 @@ npm start
 
 ![DashBoard](./user/src/assets/DashBoard.png)
 
-### Dashboard after scroll
+### Pagination
 
-![DashBoard after scroll](./user/src/assets/DashBoard_after_scroll.png)
+![Pagination](./user/src/assets/DashBoard_after_scroll.png)
 
 ### Add user modal
 

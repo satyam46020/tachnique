@@ -66,7 +66,7 @@ npm start
 
 ![DashBoard](./src/assets/DashBoard.png)
 
-![DashBoard after scroll](./src/assets/DashBoard_after_scroll.png)
+![Pagination](./src/assets/DashBoard_after_scroll.png)
 
 ![Add user modal](./src/assets/Add_modal.png)
 
