@@ -145,14 +145,6 @@ const UserList = () => {
         };
     }, [totalPages]);
 
-    const handleNextPage = () => {
-        setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
-    };
-
-    const handlePrevPage = () => {
-        setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
-    };
-
     if (loading) return <Spinner />;
 
     return (
@@ -171,9 +163,7 @@ const UserList = () => {
                 )}
             </Grid>
             <Flex justify="center"mt={-10} mb={5}>
-                <Button onClick={handlePrevPage} disabled={currentPage === 1} mr={2}>Previous</Button>
-                <Text fontWeight="600" mx={4} pt={2}>{currentPage} / {totalPages}</Text>
-                <Button onClick={handleNextPage} disabled={currentPage === totalPages} ml={2}>Next</Button>
+                <Text fontWeight="600" mx={4} pt={2} color={'teal'}>{currentPage} / {totalPages}</Text>
             </Flex>
             {isModalOpen && (
                 <UserModal
