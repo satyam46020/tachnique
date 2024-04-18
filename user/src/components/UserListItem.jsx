@@ -12,7 +12,7 @@ const UserListItem = ({ user, onEdit, onDelete }) => {
   };
 
   return (
-    <Box p={4} borderRadius="md" boxShadow="2px 2px 20px teal" _hover={{ shadow: '2px 2px 20px brown', cursor: 'pointer', bg: 'gray.200' }}>
+    <Box p={4} borderRadius="md" boxShadow="2px 2px 20px teal" _hover={{ shadow: '2px 2px 20px red', cursor: 'pointer', bg: 'gray.200' }}>
       <Flex direction="column" align="center">
         <Text fontWeight="bold" fontSize="xl" mb={2} fontFamily="Arial">ID: <Text as="span" fontWeight="normal" color="grey" >{user.id}</Text></Text>
         <Text fontWeight="bold" fontSize="lg" mb={2} fontFamily="Arial">First Name: <Text as="span" fontWeight="normal" color="grey" >{user.name.split(" ")[0]}</Text></Text>
